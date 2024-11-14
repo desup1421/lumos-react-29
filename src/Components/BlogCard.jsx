@@ -25,7 +25,7 @@ const BlogCard = ({image, title, imageProfile, name, date}) => {
             <div>
                <img className="rounded-full w-20" src={imageProfile} alt="" />
             </div>
-            <div className="col-span-2 flex items-center text-sm ">
+            <div className="col-span-2 flex items-center text-sm font-semibold">
                 <p>{name}</p>
             </div>
             <div className="col-span-2 flex items-center justify-end text-xs text-[#252525]/70">

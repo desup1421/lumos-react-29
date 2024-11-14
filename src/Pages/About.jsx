@@ -8,10 +8,19 @@ import Leader_1 from '../assets/img/Rectangle14.jpg';
 import Leader_2 from '../assets/img/Rectangle15.jpg';
 import Banner from '../Components/Banner';
 import Banner_1 from '../assets/img/banner.jpeg';
+import MetaHelmet from '../Components/MetaHelmet';
 
 const About = () => {
+  const title = 'About'
+  const  description = 'We are a team of experts in the field of finance and accounting, dedicated to providing the best services to our clients';
+  const keywords = 'bussiness, growth, finance, accounting, services, clients';
   return (
     <>
+      <MetaHelmet 
+        title={title}
+        description={description} 
+        keywords={keywords} 
+      />
       <Header breadcrumb="About" />
       <div className="bg-secondary">
         <div className="container mx-auto flex flex-col lg:flex-row md:flex-col items-center justify-center px-8 py-10">

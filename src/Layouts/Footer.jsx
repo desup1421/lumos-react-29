@@ -1,12 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/img/Vector.jpg";
+import DOMPurify from 'dompurify'
 
 const Footer = () => {
+  const [inputValue, setInputValue] = useState("");
+  const handleChange = (e) => {
+    setInputValue(DOMPurify.sanitize(e.target.value));
+  };
+
+
   const contactCardSosial = [
-    { icon: "bx bxl-linkedin" },
-    { icon: "bx bxl-instagram" },
-    { icon: "bx bxl-facebook" },
-    { icon: "bx bxl-twitter" },
+    { icon: "bx bxl-linkedin",
+      link: "https://www.linkedin.com/in/"
+    },
+    { icon: "bx bxl-instagram",
+      link: "https://www.instagram.com/"
+    },
+    { icon: "bx bxl-facebook",
+      link: "https://www.facebook.com/"
+    },
+    { icon: "bx bxl-twitter",
+      link: "https://twitter.com/"
+    },
   ];
 
   const services = [
@@ -59,7 +74,9 @@ const Footer = () => {
                 key={index}
                 className="border px-4 py-3 rounded text-accent bg-secondary "
               >
-                <i className={item.icon}></i>
+                <a href={item.link} rel="noopener noreferrer" target="_blank">
+                  <i className={item.icon}></i>
+                </a>
               </div>
             ))}
           </div>
@@ -72,7 +89,7 @@ const Footer = () => {
           </h2>
           <ul className="space-y-2">
             {services.map((service, index) => (
-              <li key={index}>{service}</li>
+              <li key={index}> <a href="#">{service}</a></li>
             ))}
           </ul>
         </div>
@@ -89,8 +106,10 @@ const Footer = () => {
                   <i className={career.logo}></i>
                 </div>
                 <div>
-                  <h3 className="font-semibold">{career.title}</h3>
-                  <p className="text-sm">{career.experience}</p>
+                  <a href="#" rel="noopener noreferrer">
+                    <h3 className="font-semibold">{career.title}</h3>
+                    <p className="text-sm">{career.experience}</p>
+                  </a>
                 </div>
               </li>
             ))}
@@ -107,13 +126,19 @@ const Footer = () => {
             the readable content of a page.
           </p>
           <form className="flex flex-col gap-2">
+            <label className="hidden" htmlFor="email">Email</label>
             <input
               type="email"
               placeholder="Email"
               className="p-3 rounded bg-white text-black focus:outline-none"
+              name="email"
+              id="email"
+              autoComplete="email"
+              onChange={handleChange}
+              value={inputValue}
             />
             <div className="mt-5 justify-end w-full flex">
-              <button className="py-3 px-8  bg-accent text-white rounded-lg  hover:bg-accent-dark transition duration-300">
+              <button className="py-3 px-8  bg-accent hover:bg-accent/90 text-white rounded-lg transition duration-300">
                 Submit
               </button>
             </div>

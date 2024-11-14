@@ -1,62 +1,86 @@
-import React from "react";
+import React, { useState } from "react";
+import DOMPurify from 'dompurify'
 
 const ContactForm = () => {
+  const [formValues, setFormValues] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormValues((prepValues) => ({
+      ...prepValues,
+      [name]: DOMPurify.sanitize(value),
+    }));
+  }
   return (
-    <div className="flex flex-col border rounded-xl p-4 sm:p-6 lg:p-8 w-1/2">
+    <div className="h-full border rounded-xl p-8 bg-white">
       <form>
         <div className="grid gap-4">
           {/* Grid */}
           <div className="grid grid-cols-1 gap-4">
             <div>
-              <label htmlFor="hs-firstname-contacts-1" className="sr-only">
-                First Name
+              <label htmlFor="name" className="sr-only">
+                Name
               </label>
               <input
                 type="text"
-                name="hs-firstname-contacts-1"
-                id="hs-firstname-contacts-1"
-                className="py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
-                placeholder="First Name"
+                id="name"
+                className="outline-accent py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
+                placeholder="Name"
+                name="name"
+                value={formValues.name}
+                onChange={handleChange}
+                autoComplete="name"
               />
             </div>
           </div>
           {/* End Grid */}
           <div>
-            <label htmlFor="hs-email-contacts-1" className="sr-only">
+            <label htmlFor="email" className="sr-only">
               Email
             </label>
             <input
               type="email"
-              name="hs-email-contacts-1"
-              id="hs-email-contacts-1"
+              name="email"
+              id="email"
               autoComplete="email"
-              className="py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
+              className="outline-accent py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
               placeholder="Email"
+              value={formValues.email}
+              onChange={handleChange}
             />
           </div>
           <div>
-            <label htmlFor="hs-phone-number-1" className="sr-only">
-              Phone Number
+            <label htmlFor="phone" className="sr-only">
+              Phone
             </label>
             <input
               type="text"
-              name="hs-phone-number-1"
-              id="hs-phone-number-1"
-              className="py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
+              name="phone"
+              id="phone"
+              className="outline-accent py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
               placeholder="Phone Number"
+              value={formValues.phone}
+              onChange={handleChange}
+              autoComplete="phone"
             />
           </div>
           <div>
-            <label htmlFor="hs-about-contacts-1" className="sr-only">
-              Details
+            <label htmlFor="message" className="sr-only">
+              Your Message
             </label>
             <textarea
-              id="hs-about-contacts-1"
-              name="hs-about-contacts-1"
+              id="message"
+              name="message"
               rows={4}
-              className="py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
-              placeholder="Details"
-              defaultValue={""}
+              className="outline-accent py-3 px-4 block w-full border-gray-200 bg-secondary rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none "
+              placeholder="Your Message"
+              value={formValues.message}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -64,7 +88,7 @@ const ContactForm = () => {
         <div className="mt-4 grid">
           <button
             type="submit"
-            className="w-32 py-3 px-4 inline-flex justify-center items-left gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-accent text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
+            className="outline-accent w-32 py-3 px-4 inline-flex justify-center items-left gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-accent text-white hover:bg-accent/90 focus:outline-none  disabled:opacity-50 disabled:pointer-events-none"
           >
             Send Now
           </button>

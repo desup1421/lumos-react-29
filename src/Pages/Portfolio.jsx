@@ -2,10 +2,20 @@ import React from 'react';
 import PortfolioGroup from '../Components/PortfolioGroup';
 import Banner from '../Components/Banner';
 import bannerImg from '../assets/img/banner.jpeg';
+import MetaHelmet from "../Components/MetaHelmet";
+
 
 const Portfolio = () => {
+  const title ='Portfolio'
+  const  description = 'We are a team of experts in the field of finance and accounting, dedicated to providing the best services to our clients';
+  const keywords = 'bussiness, growth, finance, accounting, services, clients';
   return (
     <div>
+      <MetaHelmet 
+        title={title}
+        description={description} 
+        keywords={keywords} 
+      />
       <section>
         <PortfolioGroup />
       </section>

@@ -52,11 +52,11 @@ const ContactCard = () => {
   ];
 
   return (
-    <div className='px-[30px] pt-[35px]  border rounded-xl w-[360px] pb-[35px] flex flex-col '>
+    <div className='p-8 border rounded-xl w-full h-full flex flex-col bg-white'>
       <div className='flex flex-col gap-y-[30px]'>
         {contactCardData.map((item, index) => {
           return (
-            <div className='flex gap-4'>
+            <div key={index} className='flex gap-4'>
               <div className='px-5 rounded-md bg-secondary flex items-center justify-center text-accent text-center'>
                 <i className={`${item.icon} text-[30px]`}></i>
               </div>
@@ -64,10 +64,10 @@ const ContactCard = () => {
                 <h3 className='text-accent font-semibold text-[20px]'>{item.title}</h3>
                 <div className='text-[14px]'>
                   {item.description.map((item, index) => (
-                    <>
-                      <p key={index}>{item.des_1}</p>
-                      <p key={index}>{item.des_2}</p>
-                    </>
+                    <div key={index}>
+                      <p>{item.des_1}</p>
+                      <p>{item.des_2}</p>
+                    </div>
                   ))}
                 </div>
               </div>
